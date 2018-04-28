@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/fragment :: assets" />
+	<body>
+		 <div th:replace="fragments/fragment :: header"></div>
+		 	<form action="/student/view" method="get">
+		 		<div>
+					<label>NPM</label>
+				</div>
+				<div>
+					<input type="text" name="npm" class="form-control" id="npm" width="5px" />
+				</div>
+				<button type="submit" class="btn btn-primary">Lihat</button>
+				
+			</form>
+		 <div th:replace="fragments/fragment :: footer"></div>
+	</body>
+</html>
+

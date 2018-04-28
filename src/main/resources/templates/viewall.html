@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: assets" />
+    <body>
+    	<div th:replace="fragments/fragment :: header"></div>
+    	<h2 th:text=" 'Login as ' + ${#httpServletRequest.remoteUser}">Login as</h2>
+        <h1>All Students</h1>
+        <table id="tblStudent" class="display" style="width:100%">
+        	<thead>
+        		<tr>
+        			<td>NO</td>
+        			<td>NPM</td>
+        			<td>Name</td>
+        			<td>GPA</td>
+        			<td>Status</td>
+        			<td></td>
+        			<td></td>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="student,iterationStatus: ${students}">
+        			<td th:text="${iterationStatus.count}"></td>
+        			<td th:text="${student.npm}"></td>
+        			<td th:text="${student.name}"></td>
+        			<td th:text="${student.gpa}"></td>
+        			<td th:text="${student.gpa>=3.49} ? 'Cum Laude':'Sangat Memuaskan'"></td>
+        			<td><a th:href="'/student/delete/'+${student.npm}">Delete Data</a></td>
+        			<td><a th:href="'/student/update/'+${student.npm}">Update Data</a></td>
+        		</tr>
+        	</tbody>
+        <form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out"/>
+		</form>
+        </table>
+        <div th:replace="fragments/fragment :: footer"></div>
+    </body>
+    <script>
+			$(document).ready( function () {
+			    $('#tblStudent').DataTable();
+			} );
+	</script>
+</html>
+
